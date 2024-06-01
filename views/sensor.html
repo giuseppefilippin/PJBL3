@@ -1,0 +1,67 @@
+{% extends"base.html" %}
+{% block content%}
+<div class="vertical-center">
+    <div class="container view">
+        <div class="justify-content-center">
+        {% if sensors|length> 0 %}
+            <table id="view_sensors" class="table table-secondary table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Unidade</th>
+                        <th>Tópico</th>
+                        <th>Ativo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for sensor in sensors %}
+                    <tr>
+                        <td>{{ sensor.name }}</td>
+                        <td>{{ sensor.brand }}</td>
+                        <td>{{ sensor.model }}</td>
+                        <td>{{ sensor.unit }}</td>
+                        <td>{{ sensor.topic }}</td>
+                        <td>{{ sensor.is_active }}</td>
+                        <td class="col-2">
+                            <button type="button" class="btn btn-danger">
+                                <a class="text-light" href="http://localhost:8080/del_sensor?id={{sensor.id}}">Deletar</a>
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <a class="text-light" href="http://localhost:8080/edit_sensor?id={{sensor.id}}">Editar</a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <form action= "http://localhost:8080/add_sensor" method="POST">
+                <input type="text" name="name" placeholder="Nome do sensor">
+                <input type="text" name="brand" placeholder="Marca">
+                <input type="text" name="model" placeholder="Modelo">
+                <input type="text" name="unit" placeholder="Unidade">
+                <input type="text" name="topic" placeholder="Tópico">
+                <label for="is_active">Ativo:</label>
+                <input type="checkbox" name="is_active" id="is_active" placeholder="Ativo" checked>
+                <button type="submit" class="btn btn-primary">Adicionar Sensor</button>
+            </form>
+        {% else %}
+            <p>Ainda não há sensores registrados!<p>
+            <form action= "http://localhost:8080/add_sensor" method="POST">
+                <input type="text" name="name" placeholder="Nome do sensor">
+                <input type="text" name="brand" placeholder="Marca">
+                <input type="text" name="model" placeholder="Modelo">
+                <input type="text" name="unit" placeholder="Unidade">
+                <input type="text" name="topic" placeholder="Tópico">
+                <label for="is_active">Ativo:</label>
+                <input type="checkbox" name="is_active" id="is_active" placeholder="Ativo" checked>
+                <button type="submit" class="btn btn-primary">Adicionar Sensor</button>
+            </form>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock%}
+        

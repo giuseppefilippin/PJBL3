@@ -1,0 +1,46 @@
+{% extends"base.html" %}
+{% block content%}
+<div class="vertical-center">
+    <div class="container view">
+        <div class="justify-content-center">
+        {% if users|length> 0 %}
+            <table id="view_users" class="table table-secondary table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Role</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.name }}</td>
+                        <td class="col-2">
+                            <button type="button" class="btn btn-danger"> 
+                                <a class="text-light" href="http://localhost:8080/del_user?id={{user.id}}">Deletar</a>
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <a class="text-light" href="http://localhost:8080/edit_user?id={{user.id}}">Editar</a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <form action="http://localhost:8080/add_user" method="POST">
+                <input type="text" name="user" placeholder="Nome do Usuário" required>
+                <input type="password" name="password" placeholder="Senha" required>
+                <select name="role">
+                    <option value="estatico">Estático</option>
+                    <option value="operador">Operador</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
+            </form>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock%}
+        

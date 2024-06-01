@@ -1,0 +1,22 @@
+{% extends"base.html" %}]
+{% block content%}
+<h1>Enviar</h1>
+<form method="POST">
+    <div class="btn-group">
+        <button class="btn btn-success" type="submit" value="turn on led" name="command">
+            Led ON!
+        </button>
+        <button class="btn btn-danger" type="submit" value="turn off led" name="command">
+            Led OFF!
+        </button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-success" type="submit" value="buzzer on" name="command">
+            Buzzer ON!
+        </button>
+        <button class="btn btn-danger" type="submit" value="buzzer off" name="command">
+            Buzzer OFF!
+        </button>
+    </div>
+</form>
+{% endblock %}

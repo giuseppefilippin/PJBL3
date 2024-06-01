@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content%}
+<div class="container">
+	<div class="d-flex justify-content-between align-items-center">
+		<div class="card col-md-6 h-100">
+			<div class="card-header bg-dark">
+				<h3 class="text-light text-center">Sensores</h3>
+			</div>
+			<div class="card-body border border-dark">
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="col-md-6">
+						<img src="static/img/imagem3.png" width="50" height="50">
+						{% if temperature %}
+							<p>{{temperature}}</p>
+						{%else%}
+							<p>Temperature: Not found.</p>
+						{% endif %}
+						<img src="static/img/imagem4.png" width="50" height="50">
+						{% if humidity %}
+							<p>{{humidity}}</p>
+						{%else%}
+							<p>Humidity: Not found.</p>
+						{% endif %}
+					</div>
+					<div class="col-md-6">
+						<img src="static/img/distance.png" width="50" height="50">
+						{% if distance %}
+							<p>{{distance}}</p>
+						{%else%}
+							<p>Distance: Not found.</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card col-md-6 h-75">
+			<div class="card-header bg-dark">
+				<h3 class="text-light text-center">Histórico</h3>
+			</div>
+			<div class="card-body border border-dark" style="max-height: 300px; overflow-y: auto;">
+				<ul class="list-group">
+					{% for message in messages %}
+						<li class="list-group-item">{{message}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}
